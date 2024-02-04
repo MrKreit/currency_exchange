@@ -23,6 +23,5 @@ public class ExchangeRecord {
       return "Дата: " + date + ", Сумма: " + amount + " " + sourceCurrency +
           " -> " + decimalFormat.format(resultAmount) + " " + targetCurrency.getDescription();
     }
-  }
 
 }

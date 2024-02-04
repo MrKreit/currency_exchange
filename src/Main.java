@@ -27,4 +27,5 @@ public class Main {
       System.out.println("Ошибка ввода. Введите число.");
     }
   }
+  // должно работать
 }

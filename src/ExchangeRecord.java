@@ -24,4 +24,4 @@ public class ExchangeRecord {
           " -> " + decimalFormat.format(resultAmount) + " " + targetCurrency.getDescription();
     }
 
-}
+

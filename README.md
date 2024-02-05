@@ -1,4 +1,4 @@
-### Autors: Roman Luchenkov, Dennis Schönberg, Maria Matveenko
+### Autors: Roman Luchenkov, Dennis Schönberg, Maryna Matsveyenka
 
 // Проект разделен на пять классов с целью обеспечить структурированность,
 // расширяемость и легкость поддержки кода. Давайте рассмотрим каждый класс и их взаимодействие:

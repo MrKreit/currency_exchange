@@ -14,13 +14,17 @@ public class Main {
         scanner.nextLine();
 
         switch (choice) {
-          case 1 -> currencyExchangeApp.performExchange(scanner);
-          case 2 -> currencyExchangeApp.viewExchangeHistory();
-          case 3 -> {
+          case 1 : currencyExchangeApp.performExchange(scanner);
+          break;
+          case 2 : currencyExchangeApp.viewExchangeHistory();
+          break;
+          case 3 : {
             System.out.println("Выход из программы. До свидания!");
             System.exit(0);
+            break;
           }
-          default -> System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
+          default : System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
+          break;
         }
       }
     } catch (InputMismatchException e) {

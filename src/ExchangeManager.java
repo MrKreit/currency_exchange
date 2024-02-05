@@ -30,7 +30,8 @@ public class ExchangeManager {
      * Конструктор для создания объекта ExchangeManager и инициализации начальных курсов валют.
      */
 
-    public ExchangeManager() {
+    public ExchangeManager()
+    {
         initializeExchangeRates();
     }
 

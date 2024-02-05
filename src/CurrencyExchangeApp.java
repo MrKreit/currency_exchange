@@ -1,7 +1,9 @@
 import java.util.Scanner;
+
 // Класс CurrencyExchangeApp представляет собой консольное приложение
 // для взаимодействия с пользователем.
-// Этот класс является частью пользовательского интерфейса и связывает методы из класса ExchangeManager
+// Этот класс является частью пользовательского интерфейса и связывает
+// методы из класса ExchangeManager
 // с консольным вводом/выводом, обеспечивая взаимодействие пользователя с функциональностью обмена валют.
 public class CurrencyExchangeApp {
 
@@ -21,6 +23,13 @@ public class CurrencyExchangeApp {
     System.out.println("3. Сохранить историю в файл");
     System.out.println("4. Выход");
     System.out.print("Выберите опцию: ");
+  }
+  // add
+  public void saveHistoryToFile(Scanner scanner) {
+    System.out.print("Введите имя файла для сохранения истории: ");
+    String fileName = scanner.next();
+    exchangeManager.saveHistoryToFile(fileName);
+    System.out.println("История успешно сохранена в файле " + fileName);
   }
 
 
@@ -52,12 +61,12 @@ public class CurrencyExchangeApp {
         System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
     }
   }
-  }
+
 
   // public void viewExchangeHistory() - предоставляет пользователю возможность просмотреть историю обменов.
   // Вызывает метод viewExchangeHistory объекта ExchangeManager.
 
   public void viewExchangeHistory() {
-    exchangeManager.viewExchangeHistory();
+      exchangeManager.viewExchangeHistory();
   }
 }

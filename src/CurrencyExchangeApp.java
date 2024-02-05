@@ -21,6 +21,12 @@ public class CurrencyExchangeApp {
     System.out.println("3. Выход");
     System.out.print("Выберите опцию: ");
   }
+  public void saveHistoryToFile(Scanner scanner) {
+    System.out.print("Введите имя файла для сохранения истории: ");
+    String fileName = scanner.next();
+    exchangeManager.saveHistoryToFile(fileName);
+    System.out.println("История успешно сохранена в файле " + fileName);
+  }
 
   // public void performExchange(Scanner scanner) - предоставляет пользователю возможность
   // выполнить обмен валюты. Сначала отображает доступные валюты с их сокращениями,

@@ -1,7 +1,9 @@
 import java.util.Scanner;
+
 // Класс CurrencyExchangeApp представляет собой консольное приложение
 // для взаимодействия с пользователем.
-// Этот класс является частью пользовательского интерфейса и связывает методы из класса ExchangeManager
+// Этот класс является частью пользовательского интерфейса и связывает
+// методы из класса ExchangeManager
 // с консольным вводом/выводом, обеспечивая взаимодействие пользователя с функциональностью обмена валют.
 public class CurrencyExchangeApp {
 
@@ -35,7 +37,8 @@ public class CurrencyExchangeApp {
   // public void viewExchangeHistory() - предоставляет пользователю возможность просмотреть историю обменов.
   // Вызывает метод viewExchangeHistory объекта ExchangeManager.
 
-  public void viewExchangeHistory() {
+  public void viewExchangeHistory()
+  {
     exchangeManager.viewExchangeHistory();
   }
 }

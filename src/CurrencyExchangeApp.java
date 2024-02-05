@@ -21,6 +21,7 @@ public class CurrencyExchangeApp {
     System.out.println("3. Выход");
     System.out.print("Выберите опцию: ");
   }
+  // add
   public void saveHistoryToFile(Scanner scanner) {
     System.out.print("Введите имя файла для сохранения истории: ");
     String fileName = scanner.next();

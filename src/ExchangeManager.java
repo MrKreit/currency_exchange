@@ -1,4 +1,7 @@
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -264,5 +267,15 @@ public class ExchangeManager {
             }
         }
         throw new IllegalArgumentException("Неверное сокращение валюты.");
+    }
+    public void saveHistoryToFile(String fileName) {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
+            for (ExchangeRecord record : exchangeHistory) {
+                bw.write(record.toString());
+                bw.newLine();
+            }
+        } catch (IOException e) {
+            System.out.println("Ошибка при сохранении истории в файл: " + e.getMessage());
+        }
     }
 }

@@ -233,12 +233,14 @@ public class ExchangeManager {
      * что помогает пользователю выбирать корректные обозначения валют при выполнении обмена.
      */
 
-    public void displayCurrencyAbbreviations() {
+    /* public void displayCurrencyAbbreviations() {
         System.out.println("Доступные валюты:");
         for (CurrencyEnum currency : CurrencyEnum.values()) {
             System.out.println(currency.name() + ": " + currency.getDescription());
         }
     }
+
+     */
 
     /**
      * Получает объект CurrencyEnum по сокращению валюты.

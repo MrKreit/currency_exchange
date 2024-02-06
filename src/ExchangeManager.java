@@ -175,7 +175,7 @@ public class ExchangeManager {
             } else {
                 System.out.println("Неверные валюты. Пожалуйста, выберите существующие валюты.");
             }
-        } catch (InputMismatchException e) {
+        } catch (InputMismatchEgxception e) {
             System.out.println("Ошибка ввода. Введите корректное значение.");
             scanner.nextLine();
         } catch (IllegalArgumentException e) {

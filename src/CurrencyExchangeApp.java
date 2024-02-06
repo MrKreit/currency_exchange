@@ -21,9 +21,15 @@ public class CurrencyExchangeApp {
   public void displayMenu() {
     System.out.println("\nМеню:");
     System.out.println("1. Обмен валюты");
-    System.out.println("2. Просмотр обмена в файле");
+    System.out.println("2. История обменов");
     System.out.println("3. Выход");
     System.out.print("Выберите опцию: ");
+  }
+  public void displayCurrencyAbbreviations() {
+    System.out.println("Доступные валюты:");
+    for (CurrencyEnum currency : CurrencyEnum.values()) {
+      System.out.println(currency.name() + ": " + currency.getDescription());
+    }
   }
 
   public void performExchange(Scanner scanner) {

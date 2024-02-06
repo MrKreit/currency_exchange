@@ -6,6 +6,7 @@ public class Main {
   public static void main(String[] args) {
     CurrencyExchangeApp currencyExchangeApp = new CurrencyExchangeApp();
     Scanner scanner = new Scanner(System.in);
+    currencyExchangeApp.displayCurrencyAbbreviations();
     try {
       while (true) {
         currencyExchangeApp.displayMenu();

@@ -33,10 +33,11 @@ public class CurrencyExchangeApp {
   }
 
   public void performExchange(Scanner scanner) {
+
     exchangeManager.performExchange(scanner);
   }
 
   public void viewExchangeHistory() {
-    exchangeManager.viewExchangeHistory();
+    exchangeManager.viewExchangeHistoryFromFile();
   }
 }

@@ -1,10 +1,27 @@
+
+
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Scanner;
+
+public class ExchangeManager {
+
+    //private final ExchangeRecord exchangeRecord = new ExchangeRecord();
+    private final HashMap<CurrencyEnum, Double> exchangeRates = new HashMap<>();
+    private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+    public ExchangeManager() {
+        initializeExchangeRates();
+    }
+
 import java.util.Scanner;
 
 // Класс ExchangeManager представляет собой центральное звено программы обмена валют.
@@ -63,10 +80,10 @@ public class ExchangeManager {
         exchangeRates.put(CurrencyEnum.EUR, 0.85);
         exchangeRates.put(CurrencyEnum.GBP, 0.73);
         exchangeRates.put(CurrencyEnum.CHF, 1.08);
-        exchangeRates.put(CurrencyEnum.PLN, 3.95);
+        exchangeRates.put(CurrencyEnum.PLN, 3.95); // Примерные курсы, вы можете их изменить
         exchangeRates.put(CurrencyEnum.CZK, 22.10);
     }
-    // Метод для выполнения обмена валют
+
     public void performExchange(Scanner scanner) {
         try {
             System.out.print("Введите сумму для обмена: ");
@@ -83,17 +100,22 @@ public class ExchangeManager {
             System.out.print("Введите сокращение валюты, которую вы хотите приобрести: ");
             String targetCurrencyAbbreviation = scanner.next().toUpperCase();
             CurrencyEnum targetCurrency = getCurrencyByAbbreviation(targetCurrencyAbbreviation);
-            // Проверка наличия указанных валют в списке курсов обмена
-            if (exchangeRates.containsKey(sourceCurrency) && exchangeRates.containsKey(targetCurrency)) {
+
+            if (exchangeRates.containsKey(sourceCurrency) && exchangeRates.containsKey(
+                targetCurrency)) {
+
                 double sourceRate = exchangeRates.get(sourceCurrency);
                 double targetRate = exchangeRates.get(targetCurrency);
                 // Вычисление результата обмена
                 double resultAmount = amount * (targetRate / sourceRate);
-                // Вывод результата обмена
-                System.out.println("Результат обмена: " + decimalFormat.format(resultAmount) + " " + targetCurrency.getDescription());
-                // Создание записи об обмене
-                ExchangeRecord exchangeRecord = new ExchangeRecord(new Date(), amount, sourceCurrency, targetCurrency, resultAmount);
-                exchangeHistory.add(exchangeRecord);
+
+
+                System.out.println("Результат обмена: " + decimalFormat.format(resultAmount) + " "
+                    + targetCurrency.getDescription());
+
+                ExchangeRecord exchangeRecord = new ExchangeRecord(new Date(), amount,
+                    sourceCurrency, targetCurrency, resultAmount);
+                //exchangeHistory.add(exchangeRecord);
 
                 // Добавляем запись в файл
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("text.txt", true))) {
@@ -109,28 +131,36 @@ public class ExchangeManager {
             System.out.println("Ошибка обмена: " + e.getMessage());
         }
     }
-    // Метод для просмотра истории обменов
-    public void viewExchangeHistory() {
+
+    // Reading the history from the file
+    public void viewExchangeHistoryFromFile() {
+
         System.out.println("\nИстория обменов:");
-        if (exchangeHistory.isEmpty()) {
-            System.out.println("История пуста.");
-        } else {
-            for (ExchangeRecord record : exchangeHistory) {
-                System.out.println(record);
+        try (Scanner fileScanner = new Scanner(new File("text.txt"))) {
+            while (fileScanner.hasNextLine()) {
+                String line = fileScanner.nextLine();
+                System.out.println(line);
             }
+        } catch (FileNotFoundException e) {
+            System.out.println("Файл с историей обменов не найден.");
         }
     }
-    // Метод для отображения доступных валют
+
+
+    // Demonstration of the list of available currencies
     public void displayCurrencyAbbreviations() {
         System.out.println("Доступные валюты:");
         for (CurrencyEnum currency : CurrencyEnum.values()) {
             System.out.println(currency.name() + ": " + currency.getDescription());
         }
     }
+
     // Метод для получения объекта валюты по сокращению
+
     private CurrencyEnum getCurrencyByAbbreviation(String abbreviation) {
         for (CurrencyEnum currency : CurrencyEnum.values()) {
-            if (currency.name().equals(abbreviation) || currency.getDescription().equalsIgnoreCase(abbreviation)) {
+            if (currency.name().equals(abbreviation) || currency.getDescription()
+                .equalsIgnoreCase(abbreviation)) {
                 return currency;
             }
         }

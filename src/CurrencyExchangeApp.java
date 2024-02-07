@@ -37,11 +37,7 @@ public class CurrencyExchangeApp {
     exchangeManager.performExchange(scanner);
   }
 
-
-
   public void viewExchangeHistory() {
     exchangeManager.viewExchangeHistoryFromFile();
   }
-
-
 }

@@ -28,6 +28,7 @@ public class CurrencyExchangeApp {
     System.out.println("3. Выход");
     System.out.print("Выберите опцию: ");
   }
+  // metod shows currencies
   public void displayCurrencyAbbreviations() {
     System.out.println("Доступные валюты:");
     for (CurrencyEnum currency : CurrencyEnum.values()) {

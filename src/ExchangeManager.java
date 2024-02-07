@@ -10,7 +10,9 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+
 
 public class ExchangeManager {
 
@@ -63,18 +65,14 @@ import java.util.Scanner;
 
 public class ExchangeManager {
 
-    // Хранит текущие курсы обмена валют
+    //private final ExchangeRecord exchangeRecord = new ExchangeRecord();
     private final HashMap<CurrencyEnum, Double> exchangeRates = new HashMap<>();
-    // Хранит историю обменов
-    private final ArrayList<ExchangeRecord> exchangeHistory = new ArrayList<>();
-    // Формат для вывода результатов обмена
     private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
-    // Конструктор класса, инициализирует курсы обмена
     public ExchangeManager() {
         initializeExchangeRates();
     }
-    // Инициализация курсов обмена
+
     private void initializeExchangeRates() {
         exchangeRates.put(CurrencyEnum.USD, 1.0);
         exchangeRates.put(CurrencyEnum.EUR, 0.85);
@@ -102,19 +100,20 @@ public class ExchangeManager {
             CurrencyEnum targetCurrency = getCurrencyByAbbreviation(targetCurrencyAbbreviation);
 
             if (exchangeRates.containsKey(sourceCurrency) && exchangeRates.containsKey(
-                targetCurrency)) {
 
+                    targetCurrency)) {
                 double sourceRate = exchangeRates.get(sourceCurrency);
                 double targetRate = exchangeRates.get(targetCurrency);
-                // Вычисление результата обмена
+
                 double resultAmount = amount * (targetRate / sourceRate);
 
 
                 System.out.println("Результат обмена: " + decimalFormat.format(resultAmount) + " "
-                    + targetCurrency.getDescription());
+                        + targetCurrency.getDescription());
 
                 ExchangeRecord exchangeRecord = new ExchangeRecord(new Date(), amount,
-                    sourceCurrency, targetCurrency, resultAmount);
+                        sourceCurrency, targetCurrency, resultAmount);
+
                 //exchangeHistory.add(exchangeRecord);
 
                 // Добавляем запись в файл
@@ -134,7 +133,6 @@ public class ExchangeManager {
 
     // Reading the history from the file
     public void viewExchangeHistoryFromFile() {
-
         System.out.println("\nИстория обменов:");
         try (Scanner fileScanner = new Scanner(new File("text.txt"))) {
             while (fileScanner.hasNextLine()) {
@@ -146,7 +144,6 @@ public class ExchangeManager {
         }
     }
 
-
     // Demonstration of the list of available currencies
     public void displayCurrencyAbbreviations() {
         System.out.println("Доступные валюты:");
@@ -155,12 +152,10 @@ public class ExchangeManager {
         }
     }
 
-    // Метод для получения объекта валюты по сокращению
-
     private CurrencyEnum getCurrencyByAbbreviation(String abbreviation) {
         for (CurrencyEnum currency : CurrencyEnum.values()) {
             if (currency.name().equals(abbreviation) || currency.getDescription()
-                .equalsIgnoreCase(abbreviation)) {
+                    .equalsIgnoreCase(abbreviation)) {
                 return currency;
             }
         }

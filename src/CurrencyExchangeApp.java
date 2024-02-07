@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.util.Scanner;
 
 // Класс CurrencyExchangeApp представляет собой консольное приложение
@@ -33,10 +36,15 @@ public class CurrencyExchangeApp {
   }
 
   public void performExchange(Scanner scanner) {
+
     exchangeManager.performExchange(scanner);
   }
 
+
+
   public void viewExchangeHistory() {
-    exchangeManager.viewExchangeHistory();
+    exchangeManager.viewExchangeHistoryFromFile();
   }
+
+
 }

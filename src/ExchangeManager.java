@@ -1,17 +1,21 @@
 
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
 
 public class ExchangeManager {
 
+  //private final ExchangeRecord exchangeRecord = new ExchangeRecord();
   private final HashMap<CurrencyEnum, Double> exchangeRates = new HashMap<>();
-  private final ArrayList<ExchangeRecord> exchangeHistory = new ArrayList<>();
   private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
   public ExchangeManager() {
@@ -44,7 +48,8 @@ public class ExchangeManager {
       String targetCurrencyAbbreviation = scanner.next().toUpperCase();
       CurrencyEnum targetCurrency = getCurrencyByAbbreviation(targetCurrencyAbbreviation);
 
-      if (exchangeRates.containsKey(sourceCurrency) && exchangeRates.containsKey(targetCurrency)) {
+      if (exchangeRates.containsKey(sourceCurrency) && exchangeRates.containsKey(
+          targetCurrency)) {
         double sourceRate = exchangeRates.get(sourceCurrency);
         double targetRate = exchangeRates.get(targetCurrency);
 
@@ -53,9 +58,9 @@ public class ExchangeManager {
         System.out.println("Результат обмена: " + decimalFormat.format(resultAmount) + " "
             + targetCurrency.getDescription());
 
-        ExchangeRecord exchangeRecord = new ExchangeRecord(new Date(), amount, sourceCurrency,
-            targetCurrency, resultAmount);
-        exchangeHistory.add(exchangeRecord);
+        ExchangeRecord exchangeRecord = new ExchangeRecord(new Date(), amount,
+            sourceCurrency, targetCurrency, resultAmount);
+        //exchangeHistory.add(exchangeRecord);
 
         // Добавляем запись в файл
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("text.txt", true))) {
@@ -72,14 +77,24 @@ public class ExchangeManager {
     }
   }
 
-  public void viewExchangeHistory() {
+  // Reading the history from the file
+  public void viewExchangeHistoryFromFile() {
     System.out.println("\nИстория обменов:");
-    if (exchangeHistory.isEmpty()) {
-      System.out.println("История пуста.");
-    } else {
-      for (ExchangeRecord record : exchangeHistory) {
-        System.out.println(record);
+    try (Scanner fileScanner = new Scanner(new File("text.txt"))) {
+      while (fileScanner.hasNextLine()) {
+        String line = fileScanner.nextLine();
+        System.out.println(line);
       }
+    } catch (FileNotFoundException e) {
+      System.out.println("Файл с историей обменов не найден.");
+    }
+  }
+
+  // Demonstration of the list of available currencies
+  public void displayCurrencyAbbreviations() {
+    System.out.println("Доступные валюты:");
+    for (CurrencyEnum currency : CurrencyEnum.values()) {
+      System.out.println(currency.name() + ": " + currency.getDescription());
     }
   }
 

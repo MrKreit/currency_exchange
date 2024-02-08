@@ -66,7 +66,7 @@ public class ExchangeManager {
       // Расчет результата обмена: Если обе валюты присутствуют в списке обмена, происходит расчет результата обмена.
       // Для этого получаются курсы валют и производится математическое вычисление.
       if (exchangeRates.containsKey(sourceCurrency) && exchangeRates.containsKey(
-          targetCurrency)) {
+              targetCurrency)) {
         double sourceRate = exchangeRates.get(sourceCurrency);
         double targetRate = exchangeRates.get(targetCurrency);
 
@@ -74,12 +74,12 @@ public class ExchangeManager {
         // Вывод результата обмена: Результат обмена выводится на экран, округленный до двух знаков после запятой,
         // с помощью объекта DecimalFormat.
         System.out.println("Результат обмена: " + decimalFormat.format(resultAmount) + " "
-            + targetCurrency.getDescription());
+                + targetCurrency.getDescription());
         // Создание и добавление записи в историю обменов: Создается объект ExchangeRecord,
         // содержащий информацию о текущем обмене, включая дату и время.
         // Затем этот объект добавляется в список exchangeHistory.
         ExchangeRecord exchangeRecord = new ExchangeRecord(new Date(), amount,
-            sourceCurrency, targetCurrency, resultAmount);
+                sourceCurrency, targetCurrency, resultAmount);
 
 
         // Запись обмена в файл: Для хранения истории обменов в файл "text.txt" создается объект BufferedWriter.
@@ -121,7 +121,7 @@ public class ExchangeManager {
   private CurrencyEnum getCurrencyByAbbreviation(String abbreviation) {
     for (CurrencyEnum currency : CurrencyEnum.values()) {
       if (currency.name().equals(abbreviation) || currency.getDescription()
-          .equalsIgnoreCase(abbreviation)) {
+              .equalsIgnoreCase(abbreviation)) {
         return currency;
       }
     }

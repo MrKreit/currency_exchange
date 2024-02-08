@@ -11,7 +11,7 @@ public class ExchangeRecord {
   private final DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
   public ExchangeRecord(Date date, double amount, CurrencyEnum sourceCurrency,
-                        CurrencyEnum targetCurrency, double resultAmount) {
+      CurrencyEnum targetCurrency, double resultAmount) {
     this.date = date;
     this.amount = amount;
     this.sourceCurrency = sourceCurrency;
@@ -22,6 +22,6 @@ public class ExchangeRecord {
   @Override
   public String toString() {
     return "Дата: " + date + ", Сумма: " + amount + " " + sourceCurrency +
-            " -> " + decimalFormat.format(resultAmount) + " " + targetCurrency.getDescription();
+        " -> " + decimalFormat.format(resultAmount) + " " + targetCurrency.getDescription();
   }
 }

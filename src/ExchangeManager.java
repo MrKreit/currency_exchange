@@ -116,7 +116,7 @@ public class ExchangeManager {
         // Запись обмена в файл: Для хранения истории обменов в файл "text.txt" создается объект BufferedWriter.
         // Запись происходит в конец файла, а затем файл закрывается. Если возникает ошибка ввода-вывода,
         // выводится соответствующее сообщение.
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("text.txt", true))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("history.txt", true))) {
           writer.write(exchangeRecord.toString());
           writer.newLine();
         } catch (IOException e) {
@@ -139,7 +139,7 @@ public class ExchangeManager {
     // Открывает файл "text.txt" для чтения с использованием объекта Scanner.
     // Это делается в блоке try-with-resources, чтобы автоматически закрыть Scanner после чтения файла,
     // даже если возникнет исключение.
-    try (Scanner fileScanner = new Scanner(new File("text.txt"))) {
+    try (Scanner fileScanner = new Scanner(new File("history.txt"))) {
       // Проверяет, есть ли еще строки в файле для чтения.
       while (fileScanner.hasNextLine()) {
         // Считывает следующую строку из файла.

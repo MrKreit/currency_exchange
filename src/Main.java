@@ -4,54 +4,56 @@ import java.util.Scanner;
 // Определяем основной класс приложения
 public class Main {
 
-    // Точка входа в программу
-    public static void main(String[] args) {
-        // Создание экземпляра приложения для обмена валют
-        CurrencyExchangeApp currencyExchangeApp = new CurrencyExchangeApp();
-        // Создание объекта Scanner для считывания ввода пользователя с консоли
-        Scanner scanner = new Scanner(System.in);
+  // Точка входа в программу
+  public static void main(String[] args) {
+    // Создание экземпляра приложения для обмена валют
+    CurrencyExchangeApp currencyExchangeApp = new CurrencyExchangeApp();
+    // Создание объекта Scanner для считывания ввода пользователя с консоли
+    Scanner scanner = new Scanner(System.in);
 
-        // Отображение списка доступных аббревиатур валют
-        currencyExchangeApp.displayCurrencyAbbreviations();
+    // Отображение списка доступных аббревиатур валют
+    currencyExchangeApp.displayCurrencyAbbreviations();
 
-        // Обрабатываем пользовательский ввод в блоке try-catch для обработки исключений
-        try {
-            // Бесконечный цикл для повторения меню выбора до тех пор, пока пользователь не решит выйти
-            while (true) {
-                // Отображение меню с возможными действиями
-                currencyExchangeApp.displayMenu();
-                // Считывание выбора пользователя
-                int choice = scanner.nextInt();
-                // Пропускаем оставшуюся часть строки после числа (перевод строки)
-                scanner.nextLine();
+    // Обрабатываем пользовательский ввод в блоке try-catch для обработки исключений
+    try {
+      // Бесконечный цикл для повторения меню выбора до тех пор, пока пользователь не решит выйти
+      while (true) {
+        // Отображение меню с возможными действиями
+        currencyExchangeApp.displayMenu();
+        // Считывание выбора пользователя
+        int choice = scanner.nextInt();
+        // Пропускаем оставшуюся часть строки после числа (перевод строки)
+        scanner.nextLine();
 
-                // Обработка выбора пользователя с помощью оператора switch
-                switch (choice) {
-                    case 1:
-                        // Выполнение операции обмена валюты
-                        currencyExchangeApp.performExchange(scanner);
-                        break;
-                    case 2:
-                        // Просмотр истории операций обмена
-                        currencyExchangeApp.viewExchangeHistory();
-                        break;
-                    case 3: {
-                        // Вывод сообщения о выходе и завершение работы программы
-                        System.out.println("Выход из программы. До свидания!");
-                        System.exit(0);
-                        break;
-                    }
-                    default:
-                        // Вывод сообщения об ошибке в случае неверного выбора и предложение выбрать снова
-                        System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
-                        break;
-                }
-            }
-            // Обработка исключения, возникающего при вводе данных неверного типа (не число)
-        } catch (InputMismatchException e) {
-            System.out.println("Ошибка ввода. Введите число.");
+        // Обработка выбора пользователя с помощью оператора switch
+        switch (choice) {
+          case 1:
+            // Выполнение операции обмена валюты
+            currencyExchangeApp.performExchange(scanner);
+            break;
+          case 2:
+            // Просмотр истории операций обмена
+            currencyExchangeApp.viewExchangeHistory();
+            break;
+          case 3: {
+            // Вывод сообщения о выходе и завершение работы программы
+            System.out.println("Выход из программы. До свидания!");
+            System.exit(0);
+            break;
+          }
+          default:
+            // Вывод сообщения об ошибке в случае неверного выбора и предложение выбрать снова
+            System.out.println("Неверный выбор. Пожалуйста, выберите снова.");
+            break;
         }
+      }
+      // Обработка исключения, возникающего при вводе данных неверного типа (не число)
+    } catch (InputMismatchException e) {
+      System.out.println("Ошибка ввода. Введите число.");
+
     }
+
+  }
 
 }
 

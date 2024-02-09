@@ -1,26 +1,16 @@
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.util.Scanner;
 
-// Класс CurrencyExchangeApp представляет собой консольное приложение
-// для взаимодействия с пользователем.
-// Этот класс является частью пользовательского интерфейса и связывает
-// методы из класса ExchangeManager
-// с консольным вводом/выводом, обеспечивая взаимодействие пользователя с функциональностью обмена валют.
-
-// private final ExchangeManager exchangeManager = new ExchangeManager();
-// - создает объект ExchangeManager, который будет использоваться для управления обменом валют
-// и хранения истории обменов.
-// Этот объект инициализируется в конструкторе класса.
-
-
-// public void displayMenu() - выводит меню приложения на экран. Пользователь видит опции для выбора: обмен валюты,
-// просмотр истории обменов или выход из приложения.
+/* Класс CurrencyExchangeApp  содержит методы для отображения меню,
+   выбора опций пользователем, просмотра Доступные валюты, выполнения обмена валюты
+   и просмотра истории обменов.
+ */
 public class CurrencyExchangeApp {
 
+  // Здесь создается экземпляр класса ExchangeManager и инициализируется в поле exchangeManager
   private final ExchangeManager exchangeManager = new ExchangeManager();
 
+  // Этот метод отображает меню с опциями для пользователя.
+  // Выводит на экран текст с номерами опций и приглашением выбрать опцию.
   public void displayMenu() {
     System.out.println("\nМеню:");
     System.out.println("1. Обмен валюты");
@@ -28,7 +18,18 @@ public class CurrencyExchangeApp {
     System.out.println("3. Выход");
     System.out.print("Выберите опцию: ");
   }
+
   // metod shows currencies
+  // Итерируется по значениям перечисления CurrencyEnum и выводит их аббревиатуры и описания.
+  /*
+  Метод .name() возвращает строку с именем этой константы.
+  Например, если у вас есть константа CurrencyEnum.USD, то CurrencyEnum.USD.name()
+  вернет строку "USD"
+
+  Метод values() возвращает массив, содержащий все значения перечисления в том порядке,
+  в котором они объявлены.
+  Этот метод часто используется в сочетании с циклом for-each для итерации по значениям перечисления.
+  */
   public void displayCurrencyAbbreviations() {
     System.out.println("Доступные валюты:");
     for (CurrencyEnum currency : CurrencyEnum.values()) {
@@ -36,16 +37,19 @@ public class CurrencyExchangeApp {
     }
   }
 
+  /* Этот метод выполняет обмен валюты.
+     Передает управление методу performExchange из объекта exchangeManager.
+  */
   public void performExchange(Scanner scanner) {
 
     exchangeManager.performExchange(scanner);
   }
 
-
-
+  /* Этот метод отображает историю обменов.Передает управление методу
+     viewExchangeHistoryFromFile из объекта exchangeManager
+  */
   public void viewExchangeHistory() {
     exchangeManager.viewExchangeHistoryFromFile();
   }
-
 
 }

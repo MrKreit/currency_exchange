@@ -1,3 +1,4 @@
+// Класс CurrencyEnum представляет перечисление (enum) валют
 public enum CurrencyEnum {
   USD("Доллар США"),
   EUR("Евро"),
@@ -6,7 +7,7 @@ public enum CurrencyEnum {
   PLN("Польская злота"),
   CZK("Чешская крона");
 
-  private final String description; // opisanije
+  private final String description; // opisanije(translation) currency
 
   CurrencyEnum(String description) {
     this.description = description;
